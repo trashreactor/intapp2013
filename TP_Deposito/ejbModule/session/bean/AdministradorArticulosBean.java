@@ -19,7 +19,7 @@ public class AdministradorArticulosBean implements AdministradorArticulos {
 	
 	@PersistenceContext(unitName="CRM")
     private EntityManager em;
-	
+	//lalalla
 	
 	public void crearArticuloMueble(ArtMueble mueble) {
 		em.persist(mueble);
