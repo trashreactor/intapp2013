@@ -10,8 +10,8 @@ public class ArtMueble extends Articulo {
 	private String material;
 	
 	public ArtMueble(String nombre, String descripcion, float precio,
-		String foto, int stock, String material){
-		super(nombre,descripcion,precio, foto, stock);
+		String foto, int stock, String material, String marca){
+		super(nombre,descripcion,precio, foto, stock, marca);
 		this.material=material;
 	}
 
