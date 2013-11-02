@@ -18,6 +18,7 @@ public class Prueba {
 		List<ArticuloVO> arts = b.getArticulosALL();
 		System.out.println(arts.get(0).getNombre());
 		
+		
 
 	}
 
