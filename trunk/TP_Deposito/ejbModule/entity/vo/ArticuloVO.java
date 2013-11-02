@@ -1,7 +1,7 @@
 package entity.vo;
 
 public class ArticuloVO {
-	
+
 	private int id;
 	private String nombre;
 	private String descripcion;
@@ -9,11 +9,13 @@ public class ArticuloVO {
 	private String foto;
 	private int stock;
 	private String fichaTecnica;
+	private String tipo;
 	private String color;
 	private String talle;
 	private String material;
 	private String rangoEdad;
 	private String marca;
+	
 	
 	public ArticuloVO(int id, String nombre, String descripcion,
 			float precio, String foto, int stock, String fichaTecnica,
@@ -26,6 +28,7 @@ public class ArticuloVO {
 		this.foto = foto;
 		this.stock = stock;
 		this.fichaTecnica = fichaTecnica;
+		this.tipo = tipo;
 		this.color = color;
 		this.talle = talle;
 		this.material = material;
@@ -33,11 +36,12 @@ public class ArticuloVO {
 		this.marca = marca ;
 	}
 
-	public ArticuloVO(int codArticulo, String descripcion, float precio, int stock) {
-		this.id=codArticulo;
-		this.descripcion=descripcion;
-		this.precio=precio;
-		this.stock=stock;
+	public ArticuloVO(int codArticulo, String descripcion, float precio,
+			int stock) {
+		this.id = codArticulo;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.stock = stock;
 	}
 
 	public int getId() {
@@ -137,5 +141,13 @@ public class ArticuloVO {
 	}
 	
 		
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 }

@@ -1,4 +1,5 @@
 package model;
+
 import java.util.Hashtable;
 import java.util.List;
 
@@ -12,43 +13,58 @@ public class BusinessDelegate {
 	private DepositoFacade depositoFacade;
 	private InitialContext initialContext;
 	private String naming = "TP_Deposito/facade/bean/DepositoFacadeBean/remote";
-	
-	
+
 	public BusinessDelegate() {
 		inicializarContexto();
 	}
-	
-	private DepositoFacade getDepositoFacade(){
-		try{
-			if(depositoFacade == null){
-				depositoFacade = (DepositoFacade)initialContext.lookup(naming);
+
+	private DepositoFacade getDepositoFacade() {
+		try {
+			if (depositoFacade == null) {
+				depositoFacade = (DepositoFacade) initialContext.lookup(naming);
 			}
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return depositoFacade;
 	}
-	
 
-	
 	private void inicializarContexto() {
-		try{
+		try {
 			Hashtable props = new Hashtable();
-			props.put(InitialContext.INITIAL_CONTEXT_FACTORY,"org.jnp.interfaces.NamingContextFactory");
-			//Url completa de ubicacion del servidor de aplicaciones
-			props.put(InitialContext.PROVIDER_URL,"jnp://127.0.0.1:1099");
-			//Objeto del tipo InitialContext
+			props.put(InitialContext.INITIAL_CONTEXT_FACTORY,
+					"org.jnp.interfaces.NamingContextFactory");
+			// Url completa de ubicacion del servidor de aplicaciones
+			props.put(InitialContext.PROVIDER_URL, "jnp://127.0.0.1:1099");
+			// Objeto del tipo InitialContext
 			initialContext = new InitialContext(props);
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
-	
-	public List<ArticuloVO> getArticulosALL(){
+
+	public List<ArticuloVO> getArticulosALL() {
 		return getDepositoFacade().getAllArticulos();
 	}
-	
-	
-	
+
+	public void sumarStock(ArticuloVO a) {
+		getDepositoFacade().sumarStock(a);
+	}
+
+	public void crearArticuloModa(ArtModaVO a) {
+		getDepositoFacade().crearArticuloModa(a);
+	}
+
+	public void crearArticuloNinos(ArtNinosVO a) {
+		getDepositoFacade().crearArticuloNinos(a);
+	}
+
+	public void crearArticuloMueble(ArtMuebleVO a) {
+		getDepositoFacade().crearArticuloMueble(a);
+	}
+
+	public void crearArticuloElectro(ArtElectroVO a) {
+		getDepositoFacade().crearArticuloElectro(a);
+	}
 
 }

@@ -15,11 +15,16 @@ import entity.vo.ArticuloVO;
 @Remote
 public interface DepositoFacade {
 	
+	
+	//articulo
+	public void sumarStock(ArticuloVO a);
 	public void crearArticuloModa(ArtModaVO moda);
 	public void crearArticuloMueble(ArtMuebleVO mueble);
 	public void crearArticuloNinos(ArtNinosVO ninos);
 	public void crearArticuloElectro(ArtElectroVO electro);
 	public List<ArticuloVO> getAllArticulos ();
 	
-
+	//compras
+	
+	
 }
