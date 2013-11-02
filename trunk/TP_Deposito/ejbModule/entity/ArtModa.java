@@ -13,8 +13,8 @@ public class ArtModa extends Articulo {
 	private String talle;
 	
 	public ArtModa(String nombre, String descripcion, float precio,
-		String foto, int stock, String color, String talle){
-		super(nombre,descripcion,precio, foto, stock);
+		String foto, int stock, String color, String talle, String marca){
+		super(nombre,descripcion,precio, foto, stock, marca);
 		this.color=color;
 	}
 
