@@ -22,6 +22,8 @@ public class BusinessDelegate {
 		try{
 			if(depositoFacade == null){
 				depositoFacade = (DepositoFacade)initialContext.lookup(naming);
+				
+				
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();

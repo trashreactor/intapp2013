@@ -13,11 +13,23 @@ public class ArtModaVO {
 	private String talle;
 	
 		
-	
+
 	public ArtModaVO(int id, String nombre, String descripcion, float precio,
 			String foto, int stock, String color, String talle) {
 		super();
 		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.foto = foto;
+		this.stock = stock;
+		this.color = color;
+		this.talle = talle;
+	}
+	public ArtModaVO(String nombre, String descripcion, float precio,
+			String foto, int stock, String color, String talle) {
+		super();
+	
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;

@@ -1,4 +1,9 @@
+
+<%@page import="model.*"%>
+<%@page import="java.util.List"%>
+<%@page import="entity.vo.*"%>
 <%@include file='master/header.jsp'%>
+
     <div id="divContenedor">
         <div id="divTitulo">
             Articulos
@@ -35,6 +40,9 @@
                         <th align="left">
                             Nombre
                         </th>
+                        <th align="left">
+                            Tipo
+                        </th>
                         <th align="left" width="150px">
                             Fecha Creaci&oacute;n
                         </th>
@@ -43,14 +51,15 @@
                         </th>
                     </tr>
                     <tr class="highlightRow">
-                        <td>
-                            <input id="Checkbox2" type="checkbox" />
-                        </td>
+                        <td><input id="Checkbox2" type="checkbox" /></td>
                         <td>
                             D237UE
                         </td>
                         <td>
                             ProductoNombre
+                        </td>
+                        <td>
+                            Ninios
                         </td>
                         <td>
                             2012-01-02 09:28:35
@@ -67,15 +76,17 @@
                         </td>
                     </tr>
                     <%	
-							for (DiccionarioView d : diccionarios ){
+                    BusinessDelegate bd = new BusinessDelegate();
+                    List<ArticuloVO> articulos = bd.getArticulosALL();
+							for (ArticuloVO a : articulos ){
 								out.print("<tr>");
 								out.print(
-									"<td>"+d.getNombre()+"</td>"+
-									"<td>"+d.getDescripcion()+"</td>"+
-									"<td>"+d.getFechaCreacionView()+"</td>"+
-									"<td>"+d.getFechaActualizacionView()+"</td>"+
-									"<td>"+"<center>"+"<a href='DiccionarioItemList.jsp?id="+d.getIdDiccionario()+"'><img id='Image0' src='img/page_white_text.png' alt='Ver lista de items' border='0'/></a>"+"</td>"+						
-									"<td>"+"<center>"+"<a   href='DiccionarioList.jsp?divEditar=1&idDicc="+d.getIdDiccionario()+"'><img id='Image1' src='img/edit.png' alt='Modificar' border='0' /></a>"+"</td>"+
+									"<td><input id='Checkbox"+a.getId()+"' type='checkbox' /></td>"+
+									"<td>"+a.getId()+"</td>"+
+									"<td>"+a.getNombre()+"</td>"+
+									"<td>"+a.getTipo()+"</td>"+
+									"<td></td>"+
+									"<td>"+"<center>"+"<a href='DiccionarioList.jsp?divEditar=1&idDicc="+a.getId()+"'><img id='Image1' src='img/edit.png' alt='Modificar' border='0' /></a>"+"</td>"+
 									"<td>"+"<center><img id='Image2' src='img/delete.png' alt='Eliminar' border='0' /></td>"+"</tr>"
 									);
 							}
@@ -99,7 +110,7 @@
                         Codigo
                     </td>
                     <td>
-                        <input id="Text8" type="text" value="D237UE" />
+                        <input id="tCodigo" type="text" value="" />
                     </td>
                 </tr>
                 <tr>
@@ -107,7 +118,15 @@
                         Nombre
                     </td>
                     <td>
-                        <input id="Text1" type="text" value="Silla nro3" />
+                        <input id="tNombre" type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100px">
+                        Precio
+                    </td>
+                    <td>
+                        <input id="tPrecio" type="text" value="" />
                     </td>
                 </tr>
                 <tr>
@@ -115,7 +134,7 @@
                         Stock
                     </td>
                     <td>
-                        <input id="Text2" type="text" value="4000" />
+                        <input id="tStock" type="text" value="4000" />
                     </td>
                 </tr>
                 <tr>
@@ -123,7 +142,7 @@
                         desc
                     </td>
                     <td>
-                        <input id="Text3" type="text" value="" />
+                        <input id="tDescripcion" type="text" value="" />
                     </td>
                 </tr>
                 <tr>
@@ -131,12 +150,12 @@
                         tipo
                     </td>
                     <td>
-                        <select id="Select1">
+                        <select id="ddl">
                             <option></option>
-                            <option>tipo1</option>
-                            <option selected="selected">tipo2</option>
-                            <option>tipo3</option>
-                            <option>tipo4</option>
+                            <option value="Moda">Moda</option>
+                            <option value="Ninos">Ninos</option>
+                            <option value="Ninos">Mueble</option>
+                            <option value="Electro">Electro</option>
                         </select>
                     </td>
                 </tr>
@@ -146,7 +165,7 @@
                     </td>
                     <td>
                         <br />
-                        <input type="button" id="btnSave" value="Guardar" class="boton" />
+                        <input type="button" id="bGuardar" value="Guardar" class="boton" />
                         <br />
                     </td>
                 </tr>
