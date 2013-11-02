@@ -11,8 +11,8 @@ public class ArtElectro extends Articulo {
 	private String fichaTecnica;
 	
 	public ArtElectro(String nombre, String descripcion, float precio,
-		String foto, int stock, String fichaTecnica){
-		super(nombre,descripcion,precio, foto, stock);
+		String foto, int stock, String fichaTecnica, String marca){
+		super(nombre,descripcion,precio, foto, stock, marca);
 		this.fichaTecnica=fichaTecnica;
 	}
 
