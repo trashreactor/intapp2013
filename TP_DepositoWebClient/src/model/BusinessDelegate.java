@@ -43,7 +43,13 @@ public class BusinessDelegate {
 		}
 	}
 
+	
+	
+	//Articulos
 	public List<ArticuloVO> getArticulosALL() {
+		return getDepositoFacade().getAllArticulos();
+	}
+	public ArticuloVO getArticulo(int id) {
 		return getDepositoFacade().getAllArticulos();
 	}
 

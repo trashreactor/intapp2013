@@ -25,38 +25,11 @@ function _set(nombre, valor) {
     document.getElementById("ctl00_ContentPlaceHolderMain_" + nombre).value = (isNaN(valor) ? "0" : valor);
 }
 
-	 
-///Usado para sumar importes en la boleta	 
-function sumarOtrosConceptos(){
-	try{
-
-		if (document.getElementById("TextBoxItemB3").value=="") {
-			document.getElementById("TextBoxInteresB3").value="0";
-			document.getElementById("TextBoxTotalB3").value="0";        
-			document.getElementById("TextBoxItemB3").value="0";            
-		}
-
-		document.getElementById("TextBoxInteresB3").value = (parseFloat(document.getElementById("hiddenPorcentajeInteres").value.replace(",","."))  *   parseFloat(document.getElementById("TextBoxItemB3").value.replace(",","."))  )/100;
-		document.getElementById("TextBoxInteresB3").value = (Math.round((document.getElementById("TextBoxInteresB3").value)*100)/100);		
-		document.getElementById("TextBoxTotalB3").value = parseFloat(document.getElementById("TextBoxInteresB3").value) + parseFloat(document.getElementById("TextBoxItemB3").value) 
-		document.getElementById("TextBoxTotalB3").value = (Math.round((document.getElementById("TextBoxTotalB3").value)*100)/100);		
-		
-		var rta1 = document.getElementById("TextBoxTotalB1").value;
-		var rta2 = document.getElementById("TextBoxTotalB11").value;
-		var rta3 = document.getElementById("TextBoxTotalB3").value;
-		rta1 = rta1.replace(",",".");
-		rta2 = rta2.replace(",",".");
-		rta3 = rta3.replace(",",".");
-		//sumo totales
-		document.getElementById("TextBoxTotalB").value = parseFloat(rta1) + parseFloat(rta2) + parseFloat(rta3) ;
-		document.getElementById("TextBoxTotalB").value = (Math.round(( parseFloat(document.getElementById("TextBoxTotalB").value) )*100)/100);
-		document.getElementById("HiddenTotalB").value =document.getElementById("TextBoxTotalB").value ;
-	}catch(e ){
-		document.getElementById("TextBoxInteresB3").value="0";
-		document.getElementById("TextBoxTotalB3").value="0";        
-		document.getElementById("TextBoxItemB3").value="0";  
-	}        
+function funcNoHabilitada() {
+	return confirm('Funcionabilidad no habilitada');
 }
+	 
+
 
 ///setea en cero los inputs que estan vacios en un onblur
 function siVacioCero(elem){
@@ -86,71 +59,10 @@ function llenaInput(elem,formato){
 
 //#####·##validaciones##########################################################
 
-// valida cuit
-function validaCuit(elem){
-	if (elem.value.length>0){		
-			var formulario =null;
-	
-			if (elem.length == 0 ) {//nothing
-			}else if ( elem.value.toUpperCase()=='ADMIN' ){	
-				elem.style.backgroundColor = "#D1ECFA";
-			
-			}else if (elem.value==''){						
-			
-			}else if (elem.value.length==11){
-				elem.value =	elem.value.charAt(0) + elem.value.charAt(1) +'-'+
-								elem.value.charAt(2) + elem.value.charAt(3) + elem.value.charAt(4) + elem.value.charAt(5) +
-								elem.value.charAt(6) + elem.value.charAt(7) + elem.value.charAt(8) + elem.value.charAt(9) +'-'+
-								elem.value.charAt(10) + elem.value.charAt(11) ;
-				
-				elem.style.backgroundColor = "#D7EADA";
-			
-			}else if ( (elem.value.length==13)&&(elem.value.charAt(2)=="-")&&(elem.value.charAt(11)=="-") ){
-				//ya viene con guiones
-				elem.style.backgroundColor = "#D7EADA";
-				
-			}else {
-				//formulario.error.value = "ingrese un CUIT valido"
-				elem.style.backgroundColor = "#FFCCCC";
-			}
-	}else elem.style.backgroundColor = "#ffffff";	
-}
 
 
 
-//valida nro empresa
-function validaEmpresa(elem){
-	if (elem.value.length > 0 ) { //nothing
-		if (elem.value.length==9){
-			elem.value =	elem.value.charAt(0) + elem.value.charAt(1) +'-'+
-							elem.value.charAt(2) + elem.value.charAt(3) + elem.value.charAt(4) + elem.value.charAt(5) +
-							elem.value.charAt(6) +'-'+ elem.value.charAt(7) + elem.value.charAt(8)  ;
-			elem.style.backgroundColor = "#D7EADA";
-	
-		}else if (elem.value.length==11){
-			elem.style.backgroundColor = "#D7EADA";
-			
-		}else if ( (elem.value.length!=9)||(elem.value.length!=11)){
-			elem.style.backgroundColor = "#FFCCCC";
-			alert("el Nro de Empresa debe estar en formato aa-bbbbb-cc, con \n a=nro de zona \n b= nro empresa \n c=nro de subzona");
-		}else{ 
-			elem.style.backgroundColor = "#FFCCCC";
-			alert("el Nro de Empresa debe estar en formato aa-bbbbb-cc, con \n a=nro de zona \n b= nro empresa \n c=nro de subzona");				
-		}
-	}else  elem.style.backgroundColor = "#FFFFFF";
-}
 
-
-//textos
-//saco comillas simples '
-function validaTexto(elem){
-    var st = elem.value;
-    st = st.replace("'", "");
-    st = st.replace("`", "");
-    st = st.replace("´", "");
-    st = st.replace('"', "");    
-    elem.value=st.toUpperCase();
-}
 
 //valida email
 function validaEmail(elem){

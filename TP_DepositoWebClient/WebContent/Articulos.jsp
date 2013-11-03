@@ -4,6 +4,33 @@
 <%@page import="entity.vo.*"%>
 <%@include file='master/header.jsp'%>
 
+<%
+	String divCrear = (request.getParameter("divCrear") == null) ? "0"
+			: (String) request.getParameter("divCrear");
+
+	String divAltaStock = (request.getParameter("divAltaStock") == null) ? "0"
+			: (String) request.getParameter("divAltaStock");
+
+	String id = (request.getParameter("id") == null) ? "0"
+			: (String) request.getParameter("id");
+
+	BusinessDelegate bd = new BusinessDelegate();
+%>
+
+<script type="text/javascript">
+	function funcNoHabilitada() {
+		return confirm('Funcionabilidad no habilitada');
+	}
+	function checkAllOrders(x) {
+		for ( var i = 0, l = x.form.length; i < l; i++)
+			if (x.form[i].type == 'checkbox'
+					&& x.form[i].name != 'sAll')
+				x.form[i].checked = x.form[i].checked ? false
+						: true
+		x.checked = x.checked ? false : true
+	}
+</script>
+
 <div id="divContenedor">
 	<div id="divTitulo">Articulos</div>
 	<div id="divBusqueda">
@@ -21,14 +48,7 @@
 				<tr style="background-color: #dfdfdf; height: 25px">
 					<th align="left" width="10px"><input id="Checkbox1"
 						type="checkbox" onclick="checkAllOrders(this)" /> <script>
-							function checkAllOrders(x) {
-								for (var i = 0, l = x.form.length; i < l; i++)
-									if (x.form[i].type == 'checkbox'
-											&& x.form[i].name != 'sAll')
-										x.form[i].checked = x.form[i].checked ? false
-												: true
-								x.checked = x.checked ? false : true
-							}
+							
 						</script></th>
 					<th align="left" width="100px">Codigo</th>
 					<th align="left">Nombre</th>
@@ -47,12 +67,11 @@
 							alt="Modificar" border="0" />
 					</a></td>
 					<td style="width: 30px; text-align: center;"><a
-						href="?a=delete&id="> <img id="Image2" src="img/delete.png"
+						href="#" onclick="funcNoHabilitada()"> <img id="Image2" src="img/delete.png"
 							alt="Eliminar" border="0" />
 					</a></td>
 				</tr>
 				<%
-					BusinessDelegate bd = new BusinessDelegate();
 					List<ArticuloVO> articulos = bd.getArticulosALL();
 					for (ArticuloVO a : articulos) {
 						out.print("<tr>");
@@ -71,7 +90,7 @@
 								+ "<td></td>"
 								+ "<td>"
 								+ "<center>"
-								+ "<a href='DiccionarioList.jsp?divEditar=1&idDicc="
+								+ "<a href='?divEditar=1&id="
 								+ a.getId()
 								+ "'><img id='Image1' src='img/edit.png' alt='Modificar' border='0' /></a>"
 								+ "</td>"
@@ -88,13 +107,17 @@
 				id="btnNuevo0" type="button" value="Modificar Todos" class="boton" />
 		</div>
 	</div>
+
+	<%
+		if (divCrear == "1") {
+	%>
 	<div id="divForm" runat="server" style="margin-top: 20px">
 		<table id="tablaListado"
 			style="width: 500px; border: solid 1px #dfdfdf" visible="false">
 			<tr>
 				<td colspan="2"
 					style="background-color: #dfdfdf; font-weight: bold; height: 30px">
-					Edicion de Articulo</td>
+					Alta de Articulo</td>
 			</tr>
 			<tr>
 				<td width="100px">Codigo</td>
@@ -110,20 +133,24 @@
 			</tr>
 			<tr>
 				<td width="100px">Stock</td>
-				<td><input id="tStock" type="text" value="4000" /></td>
+				<td><input id="tStock" type="text" value="0" onblur="validaCantidad(this)" /></td>
 			</tr>
 			<tr>
-				<td width="100px">desc</td>
+				<td width="100px">Precio</td>
+				<td><input id="tPrecio" type="text" value="0"  onblur="validaImporte(this)"/></td>
+			</tr>
+			<tr>
+				<td width="100px">Descripcion</td>
 				<td><input id="tDescripcion" type="text" value="" /></td>
 			</tr>
 			<tr>
-				<td width="100px">tipo</td>
+				<td width="100px">Tipo</td>
 				<td><select id="ddl">
-						<option></option>
-						<option value="Moda">Moda</option>
-						<option value="Ninos">Ninos</option>
-						<option value="Ninos">Mueble</option>
-						<option value="Electro">Electro</option>
+						<option value="0"></option>
+						<option value="1">Moda</option>
+						<option value="2">Ninos</option>
+						<option value="3">Mueble</option>
+						<option value="4">Electro</option>
 				</select></td>
 			</tr>
 			<tr>
@@ -133,5 +160,44 @@
 			</tr>
 		</table>
 	</div>
+	<%
+		} else if (divAltaStock == "1") {
+
+			ArticuloVO a = bd.getArticulo(Integer.parseInt(id));
+	%>
+	<div id="divFormEditarStock" runat="server" style="margin-top: 20px">
+		<table id="tablaListado"
+			style="width: 500px; border: solid 1px #dfdfdf" visible="false">
+			<tr>
+				<td colspan="2"
+					style="background-color: #dfdfdf; font-weight: bold; height: 30px">
+					Articulo: Alta de stock</td>
+			</tr>
+			<tr>
+				<td width="100px">Codigo</td>
+				<td><%=a.getId()%></td>
+			</tr>
+			<tr>
+				<td width="100px">Nombre</td>
+				<td><%=a.getNombre()%></td>
+			</tr>
+
+			<tr>
+				<td width="100px">Cantidad a agregar Stock</td>
+				<td><input id="tStock" type="text" value="0" onblur="validaCantidad(this)" /></td>
+			</tr>
+
+			<tr>
+				<td>&nbsp;</td>
+				<td><br /> <input type="button" id="bAumentarStock"
+					value="Actualizar Stock" class="boton" /> <br /></td>
+			</tr>
+		</table>
+	</div>
+	<%
+		}
+	%>
+
+
 </div>
 <%@include file='master/footer.jsp'%>
