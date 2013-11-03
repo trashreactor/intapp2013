@@ -63,62 +63,71 @@ public class ArticuloSVL extends HttpServlet {
 
 	private void guardarArticulo(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
-		HttpSession session = request.getSession(true);
-
-		String nombre = request.getParameter("tNombre");
-		String precio = request.getParameter("tPrecio");
-		String descripcion = request.getParameter("tDescripcion");
-		String tipo = request.getParameter("tTipo");
-
-		switch(tipo){
-		case "Moda":
-			ArtModaVO Articulo= new ArtModaVO(nombre, descripcion, float precio,
-					String foto, int stock, String color, String talle) ;
-			bd.crearArticuloModa(Articulo);
-		case "Ninos":
-			
-		case "Mueble":
-			
-		case "Electro":
-			
-		}
-		
-		
-		
-		
-		session.setAttribute("divCrear", null);
-		
-
-		if (session.getAttribute("Articulo") == null) {
-			Articulo = new ArticuloView();
-			session.setAttribute("Articulo", Articulo);
-		} else {
-			Articulo = (ArticuloView) session.getAttribute("Articulo");
-		}
-
-		Articulo.setNombre(nombre);
-		Articulo.setDescripcion(descripcion);
-
-		session.setAttribute("Articulo", Articulo);
-
-		
-		bd.crearArticuloNinos(Articulo);
-		bd.crearArticuloMueble(Articulo);
-		bd.crearArticuloElectro(Articulo);
-
-		session.setAttribute("divCrear", null);
-
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/ArticuloList.jsp");
 		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
+			HttpSession session = request.getSession(true);
+
+			String nombre = request.getParameter("tNombre");
+
+			String descripcion = request.getParameter("tDescripcion");
+			int tipo = Integer.parseInt(request.getParameter("tTipo"));
+			float precio = Float.parseFloat(request.getParameter("tPrecio"));
+			int stock = Integer.parseInt(request.getParameter("tStock"));
+
+			// <option value="0"></option>
+			// <option value="1">Moda</option>
+			// <option value="2">Ninos</option>
+			// <option value="3">Mueble</option>
+			// <option value="4">Electro</option>
+
+			switch (tipo) {
+			case 1:
+				ArtModaVO amo = new ArtModaVO(nombre, descripcion, precio,
+						"", stock, "", "");
+				bd.crearArticuloModa(amo);
+			case 2:
+				ArtNinosVO ani = new ArtNinosVO(nombre, descripcion, precio,
+						"", stock, "");
+				bd.crearArticuloNinos(ani);
+			case 3:
+				ArtMuebleVO amu = new ArtMuebleVO(nombre, descripcion, precio,
+						"", stock, "");
+				bd.crearArticuloMueble(amu);
+			case 4:
+				ArtElectroVO ael = new ArtElectroVO(nombre, descripcion, precio,
+						"", stock, "");
+				bd.crearArticuloElectro(ael);
+			default:	
+			}
+
+			session.setAttribute("divCrear", null);
+
+			if (session.getAttribute("Articulo") == null) {
+				Articulo = new ArticuloView();
+				session.setAttribute("Articulo", Articulo);
+			} else {
+				Articulo = (ArticuloView) session.getAttribute("Articulo");
+			}
+
+			Articulo.setNombre(nombre);
+			Articulo.setDescripcion(descripcion);
+
+			session.setAttribute("Articulo", Articulo);
+
+			
+			session.setAttribute("divCrear", null);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/Articulos.jsp");
+			try {
+				dispatcher.forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+
+		}
 	}
 
 	private void crearArticulo(HttpServletRequest request,

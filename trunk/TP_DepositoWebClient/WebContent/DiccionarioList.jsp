@@ -11,22 +11,22 @@
 %>
 <%
 	String divEditar = (request.getParameter("divEditar") == null) ? "0"
-	: (String) request.getParameter("divEditar");
+			: (String) request.getParameter("divEditar");
 %>
 <%
 	String id = (String) request.getParameter("id");
 %>
 <%
 	String eliminar = (request.getParameter("eliminar") == null) ? "0"
-	: (String) request.getParameter("eliminar");
+			: (String) request.getParameter("eliminar");
 %>
 <%
 	Sistema s = Sistema.getInstancia();
 %>
 <%
 	String idDicc = (request.getParameter("idDicc") == null) ? (String) session
-	.getAttribute("idDicc") : (String) request
-	.getParameter("idDicc");
+			.getAttribute("idDicc") : (String) request
+			.getParameter("idDicc");
 %>
 <%
 	session.setAttribute("idDicc", idDicc);
@@ -34,13 +34,13 @@
 <%
 	if (eliminar.equals("1")) {
 		DiccionarioView dView = s.buscarDiccionarioViewByID(Long
-		.parseLong(id));
+				.parseLong(id));
 		List<ItemDiccionario> items = s.buscarDiccionarioByID(
-		dView.getIdDiccionario()).getItemsDiccionario();
+				dView.getIdDiccionario()).getItemsDiccionario();
 		if (items.isEmpty()) {
-	s.bajaDiccionario(dView);
-	session.setAttribute("id", null);
-	session.setAttribute("eliminar", "0");
+			s.bajaDiccionario(dView);
+			session.setAttribute("id", null);
+			session.setAttribute("eliminar", "0");
 		} else {
 %>
 <script type="text/javascript">
