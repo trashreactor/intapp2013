@@ -22,7 +22,17 @@ public class ArtElectroVO{
 		this.stock = stock;
 		this.fichaTecnica = fichaTecnica;
 	}
+	public ArtElectroVO(String nombre, String descripcion, float precio,
+			String foto, int stock, String fichaTecnica) {
+		super();
 	
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.foto = foto;
+		this.stock = stock;
+		this.fichaTecnica = fichaTecnica;
+	}
 	public int getId() {
 		return id;
 	}

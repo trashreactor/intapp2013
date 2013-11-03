@@ -23,6 +23,18 @@ public class ArtNinosVO {
 		this.stock = stock;
 		this.rangoEdad = rangoEdad;
 	}
+	
+	public ArtNinosVO(String nombre, String descripcion, float precio,
+			String foto, int stock, String rangoEdad) {
+		super();
+	
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.foto = foto;
+		this.stock = stock;
+		this.rangoEdad = rangoEdad;
+	}
 	public int getId() {
 		return id;
 	}
