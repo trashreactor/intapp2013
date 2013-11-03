@@ -21,7 +21,17 @@ public class ArtMuebleVO {
 		this.stock = stock;
 		this.material = material;
 	}
-
+	public ArtMuebleVO(String nombre, String descripcion, float precio,
+			String foto, int stock, String material) {
+		super();
+	
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.foto = foto;
+		this.stock = stock;
+		this.material = material;
+	}
 	public int getId() {
 		return id;
 	}
