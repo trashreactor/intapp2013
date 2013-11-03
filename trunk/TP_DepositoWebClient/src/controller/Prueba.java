@@ -1,7 +1,5 @@
 package controller;
 
-
-
 import java.util.List;
 
 import entity.vo.ArticuloVO;
@@ -17,7 +15,6 @@ public class Prueba {
 		BusinessDelegate b = new BusinessDelegate();
 		List<ArticuloVO> arts = b.getArticulosALL();
 		System.out.println(arts.get(0).getNombre());
-		
 
 	}
 
