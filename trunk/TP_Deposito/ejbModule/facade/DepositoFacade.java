@@ -23,8 +23,11 @@ public interface DepositoFacade {
 	public void crearArticuloNinos(ArtNinosVO ninos);
 	public void crearArticuloElectro(ArtElectroVO electro);
 	public List<ArticuloVO> getAllArticulos ();
-	public ArticuloVO getAllArticulo ();
+	public ArticuloVO getArticulo (int id);
+	public ArticuloVO buscarArticulo(String stringBusqueda);
 	
+		
+
 	//compras
 	
 	
