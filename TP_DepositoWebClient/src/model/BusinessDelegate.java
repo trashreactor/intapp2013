@@ -43,14 +43,17 @@ public class BusinessDelegate {
 		}
 	}
 
-	
-	
-	//Articulos
+	// Articulos
+	public ArticuloVO buscarArticulo(String stringBusqueda) {
+		return getDepositoFacade().buscarArticulo(stringBusqueda);
+	}
+
 	public List<ArticuloVO> getArticulosALL() {
 		return getDepositoFacade().getAllArticulos();
 	}
+
 	public ArticuloVO getArticulo(int id) {
-		return getDepositoFacade().getAllArticulos();
+		return getDepositoFacade().getArticulo(id);
 	}
 
 	public void sumarStock(ArticuloVO a) {
@@ -72,5 +75,4 @@ public class BusinessDelegate {
 	public void crearArticuloElectro(ArtElectroVO a) {
 		getDepositoFacade().crearArticuloElectro(a);
 	}
-
 }
