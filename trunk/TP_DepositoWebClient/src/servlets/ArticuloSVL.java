@@ -20,27 +20,16 @@ public class ArticuloSVL extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	BusinessDelegate bd = new BusinessDelegate();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ArticuloSVL() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -48,12 +37,19 @@ public class ArticuloSVL extends HttpServlet {
 			if (action.equals("Nuevo")) {
 				this.crearArticulo(request, response);
 			}
+			if (action.equals("Buscar")) {
+				this.buscarArticulo(request, response);
+			}
 			if (action.equals("Guardar")) {
 				this.guardarArticulo(request, response);
 			}
-			if (action.equals("Editar")) {
-				this.editarArticulo(request, response);
+			if (action.equals("Agregar Stock")) {
+				this.agregarStock(request, response);
 			}
+			if (action.equals("Modificar Todos")) {
+				this.agregarStockTodos(request, response);
+			}
+
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -61,14 +57,40 @@ public class ArticuloSVL extends HttpServlet {
 		}
 	}
 
+	private void buscarArticulo(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		try {
+			HttpSession session = request.getSession(true);
+
+			// recibir el dato a buscar, traerlo de la base y mostrarlo en el
+			// listado
+			
+			String stringBusqueda = (String) request.getParameter("stringBusqueda");
+			bd.buscarArticulo(stringBusqueda);
+			
+			
+			
+			
+			
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/Articulos.jsp");
+			try {
+				dispatcher.forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+
+		}
+	}
+
 	private void guardarArticulo(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		try {
-
 			HttpSession session = request.getSession(true);
-
 			String nombre = request.getParameter("tNombre");
-
 			String descripcion = request.getParameter("tDescripcion");
 			int tipo = Integer.parseInt(request.getParameter("tTipo"));
 			float precio = Float.parseFloat(request.getParameter("tPrecio"));
@@ -82,8 +104,8 @@ public class ArticuloSVL extends HttpServlet {
 
 			switch (tipo) {
 			case 1:
-				ArtModaVO amo = new ArtModaVO(nombre, descripcion, precio,
-						"", stock, "", "");
+				ArtModaVO amo = new ArtModaVO(nombre, descripcion, precio, "",
+						stock, "", "");
 				bd.crearArticuloModa(amo);
 			case 2:
 				ArtNinosVO ani = new ArtNinosVO(nombre, descripcion, precio,
@@ -94,30 +116,17 @@ public class ArticuloSVL extends HttpServlet {
 						"", stock, "");
 				bd.crearArticuloMueble(amu);
 			case 4:
-				ArtElectroVO ael = new ArtElectroVO(nombre, descripcion, precio,
-						"", stock, "");
+				ArtElectroVO ael = new ArtElectroVO(nombre, descripcion,
+						precio, "", stock, "");
 				bd.crearArticuloElectro(ael);
-			default:	
+			default:
 			}
 
 			session.setAttribute("divCrear", null);
 
-			if (session.getAttribute("Articulo") == null) {
-				Articulo = new ArticuloView();
-				session.setAttribute("Articulo", Articulo);
-			} else {
-				Articulo = (ArticuloView) session.getAttribute("Articulo");
-			}
 
-			Articulo.setNombre(nombre);
-			Articulo.setDescripcion(descripcion);
-
-			session.setAttribute("Articulo", Articulo);
-
-			
-			session.setAttribute("divCrear", null);
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/Articulos.jsp");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/Articulos.jsp");
 			try {
 				dispatcher.forward(request, response);
 			} catch (ServletException e) {
@@ -132,12 +141,12 @@ public class ArticuloSVL extends HttpServlet {
 
 	private void crearArticulo(HttpServletRequest request,
 			HttpServletResponse response) {
+
 		HttpSession session = request.getSession(true);
-		String divCrear = "1";
-		session.setAttribute("divCrear", divCrear);
+		session.setAttribute("divCrear", "1");
 
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/ArticuloList.jsp");
+				.getRequestDispatcher("/Articulos.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
@@ -148,38 +157,21 @@ public class ArticuloSVL extends HttpServlet {
 
 	}
 
-	private void editarArticulo(HttpServletRequest request,
+	private void agregarStock(HttpServletRequest request,
 			HttpServletResponse response) {
 
 		HttpSession session = request.getSession(true);
-		String nombre = request.getParameter("tNombre");
-		String descripcion = request.getParameter("tDescripcion");
-		Long id = Long.parseLong((String) session.getAttribute("idDicc"));
 
-		ArticuloView Articulo;
+		int id = Integer.parseInt(request.getParameter("hddnId"));
+		int stock = Integer.parseInt(request.getParameter("tStock"));
 
-		if (session.getAttribute("Articulo") == null) {
-			Articulo = new ArticuloView();
-			session.setAttribute("Articulo", Articulo);
-		} else {
-			Articulo = (ArticuloView) session.getAttribute("Articulo");
-		}
+		ArticuloVO a = bd.getArticulo(id);
+		a.setStock(a.getStock() + stock);
+		bd.sumarStock(a);
+		
 
-		Articulo.setIdArticulo(id);
-		Articulo.setNombre(nombre);
-		Articulo.setDescripcion(descripcion);
-
-		session.setAttribute("Articulo", Articulo);
-
-		sistema.modificarArticulo(Articulo);
-
-		session.setAttribute("divCrear", null);
-		session.setAttribute("divEditar", null);
-		session.setAttribute("nombre", null);
-		session.setAttribute("descripcion", null);
-		session.setAttribute("id", null);
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/ArticuloList.jsp");
+				.getRequestDispatcher("/Articulos.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
@@ -188,6 +180,23 @@ public class ArticuloSVL extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void agregarStockTodos(HttpServletRequest request,
+			HttpServletResponse response) {
+		HttpSession session = request.getSession(true);
+
+		// para todos los seleccionados agregar stock
+
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("/Articulos.jsp");
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
