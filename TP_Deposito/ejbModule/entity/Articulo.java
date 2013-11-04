@@ -21,11 +21,11 @@ public abstract class Articulo {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	protected int codArticulo;
 	
+	protected String marca;
 	protected String nombre;
 	protected String descripcion;
 	protected float precio;
 	protected String foto;
-	protected String marca;
 	protected String origen;
 	protected int stock;
 	
