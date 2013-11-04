@@ -55,6 +55,33 @@ public class AdministradorArticulosBean implements AdministradorArticulos {
 		List<Articulo> articulos = (List<Articulo>)q.getResultList();
 		return articulos;
 	}
+	
+	public void actualizarListaArticulos(int cantidad,List<Articulo> articulos){
+		
+		for(Articulo art:articulos)
+		{
+			Articulo art2 = em.find(Articulo.class, art.getCodArticulo());
+			if(art2 !=null){
+				art2.setStock(cantidad+ art2.getStock());
+				em.merge(art2);
+			}
+		}
+		
+	}
+	public void actualizarArticulo(int cantidad, Articulo articulo){
+		Articulo art = em.find(Articulo.class, articulo.getCodArticulo());
+		if(art !=null){
+			art.setStock(cantidad+ art.getStock());
+			em.merge(art);
+		}
+	}
+	
+	@Override
+	public Articulo obtenerArticulo(int codArticulo) 
+	{
+		Articulo articulo = em.find(Articulo.class, codArticulo);
+		return articulo;
+	}
 
 	
 
