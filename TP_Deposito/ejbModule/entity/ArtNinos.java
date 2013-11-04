@@ -11,8 +11,8 @@ public class ArtNinos extends Articulo {
 	private String rangoEdad;
 	
 	public ArtNinos(String nombre, String descripcion, float precio,
-		String foto, int stock, String rangoEdad, String marca){
-		super(nombre,descripcion,precio, foto, stock, marca);
+		String foto, int stock, String rangoEdad, String marca, String origen){
+		super(nombre,descripcion,precio, foto, stock, marca, origen);
 		this.rangoEdad=rangoEdad;
 	}
 
