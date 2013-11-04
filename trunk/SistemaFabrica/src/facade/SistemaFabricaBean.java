@@ -15,15 +15,14 @@ public class SistemaFabricaBean implements SistemaFabrica{
 	
 	public SistemaFabricaBean(){}
 
-	@Override
 	public void enviarSolicitud(SolicitudCompra solicitud) {
-		// TODO Auto-generated method stub
-		
+		em.persist(solicitud);
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public List<SolicitudCompra> obtenerSolicitudes() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM SolicitudeCompra";
+		Query query = em.createQuery(sql);
+		return query.getResultList();
 	}
 }
