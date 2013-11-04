@@ -15,11 +15,13 @@ public class ArticuloVO {
 	private String material;
 	private String rangoEdad;
 	private String marca;
+	private String origen;
+	
 	
 	
 	public ArticuloVO(int id, String nombre, String descripcion,
 			float precio, String foto, int stock, String fichaTecnica,
-			String color, String talle, String material, String rangoEdad, String marca) {
+			String color, String talle, String material, String rangoEdad, String marca, String origen) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -34,6 +36,7 @@ public class ArticuloVO {
 		this.material = material;
 		this.rangoEdad = rangoEdad;
 		this.marca = marca ;
+		this.origen = origen;
 	}
 
 	public ArticuloVO(int codArticulo, String descripcion, float precio,
@@ -148,6 +151,14 @@ public class ArticuloVO {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
 
 }

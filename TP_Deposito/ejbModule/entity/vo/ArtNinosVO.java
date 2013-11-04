@@ -11,9 +11,11 @@ public class ArtNinosVO {
 	private String foto;
 	private int stock;
 	private String rangoEdad;
+	private String marca;
+	private String origen;
 	
 	public ArtNinosVO(int id, String nombre, String descripcion,
-			float precio, String foto, int stock, String rangoEdad) {
+			float precio, String foto, int stock, String rangoEdad,String marca, String origen ) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -22,6 +24,8 @@ public class ArtNinosVO {
 		this.foto = foto;
 		this.stock = stock;
 		this.rangoEdad = rangoEdad;
+		this.marca = marca ;
+		this.origen = origen;
 	}
 	
 	public ArtNinosVO(String nombre, String descripcion, float precio,
@@ -76,6 +80,18 @@ public class ArtNinosVO {
 	}
 	public void setRangoEdad(String rangoEdad) {
 		this.rangoEdad = rangoEdad;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public String getOrigen() {
+		return origen;
+	}
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
 	
 	
