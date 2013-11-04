@@ -12,9 +12,9 @@ import entity.ArtMueble;
 import entity.vo.SolicitudCompraVO;
 
 @Remote
-public interface AdministradorSolicitudCompra {
+public interface AdministradorSolicitudDespacho {
 	
-	public List<SolicitudCompraVO> getSolicitudesCompraPendientes();
+	public List<SolicitudCompraVO> getSolicitudesDespachoPendientes();
 	
 	
 }

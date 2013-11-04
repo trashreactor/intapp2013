@@ -9,6 +9,7 @@ import entity.vo.ArtModaVO;
 import entity.vo.ArtMuebleVO;
 import entity.vo.ArtNinosVO;
 import entity.vo.ArticuloVO;
+import entity.vo.SolicitudCompraVO;
 
 
 
@@ -26,9 +27,8 @@ public interface DepositoFacade {
 	public ArticuloVO getArticulo (int id);
 	public ArticuloVO buscarArticulo(String stringBusqueda);
 	
-		
-
-	//compras
+	//compras a fabrica
+	public List<SolicitudCompraVO> getSolicitudesPendientes();
 	
 	
 }

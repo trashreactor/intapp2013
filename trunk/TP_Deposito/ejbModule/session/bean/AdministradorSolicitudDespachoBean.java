@@ -8,28 +8,36 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import session.AdministradorArticulos;
-import session.AdministradorSolicitudCompra;
+import session.AdministradorSolicitudDespacho;
 import entity.ArtElectro;
 import entity.ArtModa;
 import entity.ArtMueble;
 import entity.ArtNinos;
 import entity.Articulo;
-import entity.SolicitudCompra;
 import entity.vo.SolicitudCompraVO;
 
 @Stateless
-public class AdministradorSolicitudCompraBean implements AdministradorSolicitudCompra {
+public class AdministradorSolicitudDespachoBean implements AdministradorSolicitudDespacho {
 	
 	@PersistenceContext(unitName="CRM")
     private EntityManager em;
 
+
 	@Override
-	public List<SolicitudCompraVO> getSolicitudesCompraPendientes() {
-		Query q = (Query) em.createQuery("select codArticulo, nombre,descripcion, precio, stock  from articulos").getResultList();
+	public List<SolicitudCompraVO> getSolicitudesDespachoPendientes() {
+		Query q = (Query) em.createQuery("select *  from SolicitudDespacho inner s join ").getResultList();
+		@SuppressWarnings("unchecked")
+		List<Articulo> articulos = (List<Articulo>)q.getResultList();
+		return articulos;
 		
 		
 	}
 
 
+	
+	
+	
+
+	
 
 }
