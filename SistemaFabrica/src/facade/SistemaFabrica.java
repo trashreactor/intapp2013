@@ -23,4 +23,7 @@ public interface SistemaFabrica{
 	@GET @Path("solicitudes")
 	public List<SolicitudCompra> obtenerSolicitudes();
 	//-----------------------------------------------------------------//
+	
+	@GET @Path("confirmar")
+	public void confirmarSolicitudes(List<Integer> nrosSolicitudes) throws Exception;
 }
