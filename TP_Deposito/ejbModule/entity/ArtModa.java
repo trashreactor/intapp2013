@@ -13,9 +13,10 @@ public class ArtModa extends Articulo {
 	private String talle;
 	
 	public ArtModa(String nombre, String descripcion, float precio,
-		String foto, int stock, String color, String talle, String marca){
-		super(nombre,descripcion,precio, foto, stock, marca);
+		String foto, int stock, String color, String talle, String marca, String origen){
+		super(nombre,descripcion,precio, foto, stock, marca, origen);
 		this.color=color;
+		this.talle=talle; // agregado eric, se ve q por esto no persistia el campo talle
 	}
 
 	public String getColor() {

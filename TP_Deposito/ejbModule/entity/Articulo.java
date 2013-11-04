@@ -26,17 +26,19 @@ public abstract class Articulo {
 	protected float precio;
 	protected String foto;
 	protected String marca;
+	protected String origen;
 	protected int stock;
 	
 	
 	public Articulo(String nombre, String descripcion, float precio,
-			String foto, int stock, String marca) {
+			String foto, int stock, String marca, String origen) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.foto = foto;
 		this.stock = stock;
 		this.marca = marca ;
+		this.origen = origen;
 	}
 
 	public int getCodArticulo() {
@@ -93,6 +95,14 @@ public abstract class Articulo {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public String getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
 	
 	
