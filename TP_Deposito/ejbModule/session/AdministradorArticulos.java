@@ -13,10 +13,14 @@ import entity.ArtMueble;
 @Remote
 public interface AdministradorArticulos {
 	
-	public void crearArticuloMueble(ArtMueble mueble);
+	public void crearArticuloMueble(ArtMueble mueble); // va el valide object ???
 	public void crearArticuloModa(ArtModa moda);
 	public void crearArticuloNinos(ArtNinos ninos);
 	public void crearArticuloElectro(ArtElectro electro);
 	public List<Articulo> getArticulosALL();
+	public void actualizarListaArticulos(int cantidad,List<Articulo> articulos);
+	public void actualizarArticulo(int cantidad, Articulo articulo);
+	public Articulo obtenerArticulo(int codArticulo) ;
+	
 	
 }
