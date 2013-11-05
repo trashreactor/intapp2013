@@ -1,7 +1,5 @@
 package facade;
 
-import java.util.List;
-
 import javax.ejb.Remote;
 
 import entity.vo.ArtElectroVO;
