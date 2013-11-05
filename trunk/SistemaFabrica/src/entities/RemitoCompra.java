@@ -22,7 +22,7 @@ public class RemitoCompra implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4167598581551008212L;
+	private static final long serialVersionUID = 4167598581551008211L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
