@@ -21,6 +21,7 @@ public interface AdministradorArticulos {
 	public void actualizarListaArticulos(int cantidad,List<Articulo> articulos);
 	public void actualizarArticulo(int cantidad, Articulo articulo);
 	public Articulo obtenerArticulo(int codArticulo) ;
+	public Articulo buscarArticulo(String stringBusqueda);
 	
 	
 }

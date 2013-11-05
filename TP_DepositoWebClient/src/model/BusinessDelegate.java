@@ -44,7 +44,7 @@ public class BusinessDelegate {
 	}
 
 	// Articulos
-	public ArticuloVO buscarArticulo(String stringBusqueda) {
+	public List<ArticuloVO> buscarArticulo(String stringBusqueda) {
 		return getDepositoFacade().buscarArticulo(stringBusqueda);
 	}
 

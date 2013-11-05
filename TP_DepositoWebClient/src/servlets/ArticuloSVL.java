@@ -66,7 +66,7 @@ public class ArticuloSVL extends HttpServlet {
 			// listado
 			
 			String stringBusqueda = (String) request.getParameter("stringBusqueda");
-			bd.buscarArticulo(stringBusqueda);
+			ArticuloVO a = (ArticuloVO) bd.buscarArticulo(stringBusqueda);
 			
 			
 			
@@ -105,19 +105,19 @@ public class ArticuloSVL extends HttpServlet {
 			switch (tipo) {
 			case 1:
 				ArtModaVO amo = new ArtModaVO(nombre, descripcion, precio, "",
-						stock, "", "");
+						stock, "", "", "", "");
 				bd.crearArticuloModa(amo);
 			case 2:
 				ArtNinosVO ani = new ArtNinosVO(nombre, descripcion, precio,
-						"", stock, "");
+						"", stock, "", "", "");
 				bd.crearArticuloNinos(ani);
 			case 3:
 				ArtMuebleVO amu = new ArtMuebleVO(nombre, descripcion, precio,
-						"", stock, "");
+						"", stock, "", "", "");
 				bd.crearArticuloMueble(amu);
 			case 4:
 				ArtElectroVO ael = new ArtElectroVO(nombre, descripcion,
-						precio, "", stock, "");
+						precio, "", stock, "", "", "");
 				bd.crearArticuloElectro(ael);
 			default:
 			}

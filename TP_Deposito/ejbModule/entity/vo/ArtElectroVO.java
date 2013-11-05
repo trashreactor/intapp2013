@@ -27,7 +27,7 @@ public class ArtElectroVO{
 		this.origen = origen ;
 	}
 	public ArtElectroVO(String nombre, String descripcion, float precio,
-			String foto, int stock, String fichaTecnica) {
+			String foto, int stock, String fichaTecnica,String marca, String origen) {
 		super();
 	
 		this.nombre = nombre;

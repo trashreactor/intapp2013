@@ -29,7 +29,7 @@ public class ArtNinosVO {
 	}
 	
 	public ArtNinosVO(String nombre, String descripcion, float precio,
-			String foto, int stock, String rangoEdad) {
+			String foto, int stock, String rangoEdad,String marca, String origen) {
 		super();
 	
 		this.nombre = nombre;

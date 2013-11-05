@@ -25,7 +25,7 @@ public interface DepositoFacade {
 	public void crearArticuloElectro(ArtElectroVO electro);
 	public List<ArticuloVO> getAllArticulos ();
 	public ArticuloVO getArticulo (int id);
-	public ArticuloVO buscarArticulo(String stringBusqueda);
+	public List<ArticuloVO> buscarArticulo(String stringBusqueda);
 	
 	//compras a fabrica
 	public List<SolicitudCompraVO> getSolicitudesPendientes();

@@ -27,7 +27,7 @@ public class ArtMuebleVO {
 		
 	}
 	public ArtMuebleVO(String nombre, String descripcion, float precio,
-			String foto, int stock, String material) {
+			String foto, int stock, String material,String marca, String origen) {
 		super();
 	
 		this.nombre = nombre;

@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entity.vo.ArticuloVO;
@@ -13,7 +14,9 @@ public class Prueba {
 
 	public static void main(String[] args) {
 		BusinessDelegate b = new BusinessDelegate();
-		List<ArticuloVO> arts = b.getArticulosALL();
+		
+		List<ArticuloVO> arts = new ArrayList<ArticuloVO>();
+		arts=b.getArticulosALL();
 		System.out.println(arts.get(0).getNombre());
 
 	}
