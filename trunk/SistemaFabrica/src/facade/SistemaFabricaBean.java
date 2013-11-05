@@ -1,10 +1,8 @@
 package facade;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.*;
-import javax.jms.ObjectMessage;
 import javax.persistence.*;
 
 import jms.ConexionJMS;
@@ -30,16 +28,15 @@ public class SistemaFabricaBean implements SistemaFabrica{
 	}
 
 	public void confirmarSolicitudes(List<Integer> nrosSolicitudes) throws Exception {
-		List<SolicitudCompra> listaSolicitudes = new LinkedList<SolicitudCompra>();
 		for(int nroSolicitud : nrosSolicitudes){
 			SolicitudCompra solicitud = em.find(SolicitudCompra.class, nroSolicitud);
-			solicitud.setEstado("Confirmada");
-			RemitoCompra remito = dameElRemito(solicitud);
+			solicitud.setEstado("Satisfecha");
+			RemitoCompra remito = convertirRemito(solicitud);
 			enviarRemito(remito);
 		}
 	}
 	
-	private RemitoCompra dameElRemito(SolicitudCompra solicitud){
+	private RemitoCompra convertirRemito(SolicitudCompra solicitud){
 		return null;
 	}
 	
