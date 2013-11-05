@@ -19,6 +19,11 @@ import javax.persistence.Table;
 
 public class RemitoCompra implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4167598581551008212L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int nroRemitoCompra;
