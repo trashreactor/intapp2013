@@ -1,18 +1,18 @@
 
 <%@page import="model.*"%>
-<%@page import="java.util.List"%>
+<%@page import="java.util.*"%>
 <%@page import="entity.vo.*"%>
 <%@include file='master/header.jsp'%>
 
 <%
 	String divCrear = (request.getParameter("divCrear") == null) ? "0"
-			: (String) request.getParameter("divCrear");
+	: (String) request.getParameter("divCrear");
 
 	String divAltaStock = (request.getParameter("divAltaStock") == null) ? "0"
-			: (String) request.getParameter("divAltaStock");
+	: (String) request.getParameter("divAltaStock");
 
 	String id = (request.getParameter("id") == null) ? "0"
-			: (String) request.getParameter("id");
+	: (String) request.getParameter("id");
 
 	BusinessDelegate bd = new BusinessDelegate();
 %>
@@ -32,9 +32,9 @@
 <div id="divContenedor">
 	<div id="divTitulo">Articulos</div>
 	<div id="divBusqueda">
-		Buscador por Nombre o Código<br /> <input id="Text7" type="text" name="stringBusqueda"
-			value="" /> <input id="Submit1" type="submit" value="Buscar" name="action"
-			class="boton" /><br /> <br />
+		Buscador por Nombre o Código<br /> <input id="Text7" type="text"
+			name="stringBusqueda" value="" /> <input id="Submit1" type="submit"
+			value="Buscar" name="action" class="boton" /><br /> <br />
 	</div>
 	<div id="divListado" runat="server">
 		<div style="padding-bottom: 4px">
@@ -70,38 +70,51 @@
 					</a></td>
 				</tr>
 				<%
-					List<ArticuloVO> articulos = bd.getArticulosALL();
-					for (ArticuloVO a : articulos) {
-						out.print("<tr>");
-						out.print("<td><input id='Checkbox"
-								+ a.getId()
-								+ "' type='checkbox' /></td>"
-								+ "<td>"
-								+ a.getId()
-								+ "</td>"
-								+ "<td>"
-								+ a.getNombre()
-								+ "</td>"
-								+ "<td>"
-								+ a.getTipo()
-								+ "</td>"
-								+ "<td></td>"
-								+ "<td>"
-								+ "<center>"
-								+ "<a href='?divEditar=1&id="
-								+ a.getId()
-								+ "' title='editar stock'><img id='Image1' src='img/edit.png' alt='Modificar' border='0' /></a>"
-								+ "</td>"
-								+ "<td>"
-								+ "<center><img id='Image2' src='img/delete.png' alt='Eliminar' border='0' /></td>"
-								+ "</tr>");
+					String stringBusqueda = (String) request.getParameter("stringBusqueda");
+
+					List<ArticuloVO> articulos = new ArrayList<ArticuloVO>();
+					
+					if (stringBusqueda.equalsIgnoreCase("")){
+						articulos = bd.getArticulosALL();
+					}else{
+						articulos= bd.buscarArticulo(stringBusqueda);
 					}
+									
+									
+									
+						for (ArticuloVO a : articulos) {
+							out.print("<tr>");
+							out.print("<td><input id='Checkbox"
+									+ a.getId()
+									+ "' type='checkbox' /></td>"
+									+ "<td>"
+									+ a.getId()
+									+ "</td>"
+									+ "<td>"
+									+ a.getNombre()
+									+ "</td>"
+									+ "<td>"
+									+ a.getTipo()
+									+ "</td>"
+									+ "<td></td>"
+									+ "<td>"
+									+ "<center>"
+									+ "<a href='?divEditar=1&id="
+									+ a.getId()
+									+ "' title='editar stock'><img id='Image1' src='img/edit.png' alt='Modificar' border='0' /></a>"
+									+ "</td>"
+									+ "<td>"
+									+ "<center><img id='Image2' src='img/delete.png' alt='Eliminar' border='0' /></td>"
+									+ "</tr>");
+						}
 				%>
 			</table>
 		</div>
-		<div style="padding: 4px; vertical-align: middle; background-color: #e9e9e9;">
-			Cantidad de Stock multiple: <input id="Text9" type="text" /> <input name="action"
-				id="btnNuevo0" type="submit" value="Modificar Todos" class="boton" />
+		<div
+			style="padding: 4px; vertical-align: middle; background-color: #e9e9e9;">
+			Cantidad de Stock multiple: <input id="Text9" type="text" /> <input
+				name="action" id="btnNuevo0" type="submit" value="Modificar Todos"
+				class="boton" />
 		</div>
 	</div>
 
@@ -154,8 +167,8 @@
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
-				<td><br /> <input type="button" id="bDarAlta" value="Guardar" name="action"
-					class="boton" /> <br /></td>
+				<td><br /> <input type="button" id="bDarAlta" value="Guardar"
+					name="action" class="boton" /> <br /></td>
 			</tr>
 		</table>
 	</div>
@@ -174,9 +187,8 @@
 			</tr>
 			<tr>
 				<td width="100px">Codigo</td>
-				<td>
-				<input type="hidden" name="hddnId" value="<%=a.getId()%>" /> 
-				<%=a.getId()%></td>
+				<td><input type="hidden" name="hddnId" value="<%=a.getId()%>" />
+					<%=a.getId()%></td>
 			</tr>
 			<tr>
 				<td width="100px">Nombre</td>

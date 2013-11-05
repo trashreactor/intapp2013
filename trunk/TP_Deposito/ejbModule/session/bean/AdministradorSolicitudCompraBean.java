@@ -23,6 +23,17 @@ public class AdministradorSolicitudCompraBean implements AdministradorSolicitudC
 	@PersistenceContext(unitName="CRM")
     private EntityManager em;
 
+
+	private static AdministradorSolicitudCompraBean administradorSolicitudCompraBean;
+	public static AdministradorSolicitudCompraBean getInstancia(){
+		if (administradorSolicitudCompraBean==null)
+			administradorSolicitudCompraBean=new AdministradorSolicitudCompraBean();
+		return administradorSolicitudCompraBean;
+	}
+	
+	
+	
+	
 	@Override
 	public List<SolicitudCompraVO> getSolicitudesCompraPendientes() {
 		Query q = (Query) em.createQuery("select codArticulo, nombre,descripcion, precio, stock  from articulos").getResultList();

@@ -40,7 +40,7 @@ public class ArticuloVO {
 	}
 
 	public ArticuloVO(int codArticulo, String descripcion, float precio,
-			int stock) {
+			int stock, String marca, String origen) {
 		this.id = codArticulo;
 		this.descripcion = descripcion;
 		this.precio = precio;
