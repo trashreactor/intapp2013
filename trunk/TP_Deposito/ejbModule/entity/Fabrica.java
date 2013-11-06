@@ -18,6 +18,7 @@ public class Fabrica {
 	private String descripcion;
 	
 	private String ip;
+
 	
 	
 	public Fabrica() {
@@ -50,5 +51,7 @@ public class Fabrica {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+
+	
 
 }
