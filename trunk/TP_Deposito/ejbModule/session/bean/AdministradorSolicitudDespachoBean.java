@@ -28,7 +28,7 @@ public class AdministradorSolicitudDespachoBean implements AdministradorSolicitu
 		Query q = (Query) em.createQuery("select *  from SolicitudDespacho inner s join ").getResultList();
 		@SuppressWarnings("unchecked")
 		List<Articulo> articulos = (List<Articulo>)q.getResultList();
-		return articulos;
+		return null;
 		
 		
 	}

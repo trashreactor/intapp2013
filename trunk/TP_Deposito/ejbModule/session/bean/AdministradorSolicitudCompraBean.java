@@ -37,7 +37,7 @@ public class AdministradorSolicitudCompraBean implements AdministradorSolicitudC
 	@Override
 	public List<SolicitudCompraVO> getSolicitudesCompraPendientes() {
 		Query q = (Query) em.createQuery("select codArticulo, nombre,descripcion, precio, stock  from articulos").getResultList();
-		
+		return null;
 		
 	}
 
