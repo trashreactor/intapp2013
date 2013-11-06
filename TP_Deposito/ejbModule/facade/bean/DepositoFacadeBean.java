@@ -9,12 +9,6 @@ import session.bean.AdministradorArticulosBean;
 import entity.*;
 import entity.vo.*;
 
-import entity.vo.ArtElectroVO;
-import entity.vo.ArtModaVO;
-import entity.vo.ArtMuebleVO;
-import entity.vo.ArtNinosVO;
-import entity.vo.ArticuloVO;
-import entity.vo.SolicitudCompraVO;
 import facade.DepositoFacade;
 
 public @Stateless
@@ -83,38 +77,35 @@ class DepositoFacadeBean implements DepositoFacade {
 
 	@Override
 	public void sumarStock(ArticuloVO avo) {
-		
+
 		Articulo a = new Articulo(a.getCodArticulo(), a.getDescripcion(),
 				a.getPrecio(), a.getStock(), a.getMarca(), a.getOrigen());
-		
+
 		adminArticulos.getInstancia().actualizarArticulo(avo.getStock(), a);
-			
+
 	}
 
 	@Override
 	public ArticuloVO getArticulo(int id) {
 		Articulo a = adminArticulos.getInstancia().obtenerArticulo(id);
-		ArticuloVO avo= new ArticuloVO(a.getCodArticulo(), a.getDescripcion(),
+		ArticuloVO avo = new ArticuloVO(a.getCodArticulo(), a.getDescripcion(),
 				a.getPrecio(), a.getStock(), a.getMarca(), a.getOrigen());
 		return avo;
 	}
 
 	@Override
 	public List<ArticuloVO> buscarArticulo(String stringBusqueda) {
-		Articulo a = adminArticulos.getInstancia().buscarArticulo( stringBusqueda);
-		ArticuloVO avo= new ArticuloVO(a.getCodArticulo(), a.getDescripcion(),
+		Articulo a = adminArticulos.getInstancia().buscarArticulo(
+				stringBusqueda);
+		ArticuloVO avo = new ArticuloVO(a.getCodArticulo(), a.getDescripcion(),
 				a.getPrecio(), a.getStock(), a.getMarca(), a.getOrigen());
 		return avo;
 	}
 
-
-
-
 	@Override
 	public List<SolicitudCompraVO> getSolicitudesPendientes() {
 		return null;
-		
-		
+
 	}
-	
+
 }
