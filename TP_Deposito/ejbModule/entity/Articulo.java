@@ -16,11 +16,9 @@ import javax.persistence.Table;
 @DiscriminatorColumn(name="tipo",discriminatorType=DiscriminatorType.STRING)
     
 public abstract class Articulo {
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int codArticulo;
-	
 	protected String marca;
 	protected String nombre;
 	protected String descripcion;
@@ -28,7 +26,6 @@ public abstract class Articulo {
 	protected String foto;
 	protected String origen;
 	protected int stock;
-	
 	
 	public Articulo(String nombre, String descripcion, float precio,
 			String foto, int stock, String marca, String origen) {
