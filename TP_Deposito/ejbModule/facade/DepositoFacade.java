@@ -3,20 +3,13 @@ package facade;
 import java.util.List;
 
 import javax.ejb.Remote;
-import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
-import javax.jms.ObjectMessage;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import entity.*;
-import entity.vo.ArtElectroVO;
-import entity.vo.ArtModaVO;
-import entity.vo.ArtMuebleVO;
-import entity.vo.ArtNinosVO;
-import entity.vo.ArticuloVO;
-import entity.vo.SolicitudCompraVO;
+import entity.vo.*;
 
 
 @Path("/")
@@ -63,14 +56,21 @@ public interface DepositoFacade extends MessageListener{
 	//==================================================
 	//CREAR SOLICITUD DE COMPRA
 	
-	@GET @Path("solicitudesPendientes")
+	@GET @Path("solicitudesCompraPendientes")
 	@Produces(MediaType.APPLICATION_XML)
-	public List<SolicitudCompraVO> getSolicitudesPendientes();
+	public List<SolicitudCompraVO> getSolicitudesCompraPendientes();
 	//No estoy seguro de esta, ¿como se van a presentar las solicitudes en la pagina?
 	
 	@POST @Path("crearSolicitudCompra")
 	@Consumes(MediaType.APPLICATION_XML)
 	public void crearSolicitudCompra(SolicitudCompra solicitud);
 	
+	//===================================================
+	//CREAR REMITO DE VENTA
 	
+	@GET @Path("solicitudesDespachoPendientes")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<SolicitudDespachoVO> getSolicitudesDespachoPendientes();
+	
+	public void crearRemitoVenta
 }
