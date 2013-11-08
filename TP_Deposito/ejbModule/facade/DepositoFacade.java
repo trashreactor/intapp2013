@@ -8,6 +8,7 @@ import javax.jms.MessageListener;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+import xml.*;
 import entity.*;
 import entity.vo.*;
 
@@ -65,12 +66,15 @@ public interface DepositoFacade extends MessageListener{
 	@Consumes(MediaType.APPLICATION_XML)
 	public void crearSolicitudCompra(SolicitudCompra solicitud);
 	
-	//===================================================
+	//=====================================================================
 	//CREAR REMITO DE VENTA
 	
 	@GET @Path("solicitudesDespachoPendientes")
 	@Produces(MediaType.APPLICATION_XML)
 	public List<SolicitudDespachoVO> getSolicitudesDespachoPendientes();
 	
-	public void crearRemitoVenta
+	@POST @Path("crearRemitoVenta")
+	@Consumes(MediaType.APPLICATION_XML)
+	public void confirmarSolicitudes(ConfirmarSolicitudesXML confirmacion);
+	//=======================================================================
 }
