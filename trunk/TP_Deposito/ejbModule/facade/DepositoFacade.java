@@ -29,25 +29,29 @@ public interface DepositoFacade extends MessageListener{
 	
 	@POST @Path("crearElectro")
 	@Consumes(MediaType.APPLICATION_XML)
-	public void crearArticuloElectro(ArtElectro electro);
+	public void crearArticuloElectro(ArtElectroVO electro);
 	
 	@POST @Path("crearModa")
 	@Consumes(MediaType.APPLICATION_XML)
-	public void crearArticuloModa(ArtModa moda);
+	public void crearArticuloModa(ArtModaVO moda);
 	
 	@POST @Path("crearMueble")
 	@Consumes(MediaType.APPLICATION_XML)
-	public void crearArticuloElectro(ArtMueble mueble);
+	public void crearArticuloElectro(ArtMuebleVO mueble);
 	
 	@POST @Path("crearNinos")
 	@Consumes(MediaType.APPLICATION_XML)
-	public void crearArticuloElectro(ArtNinos ninos);
+	public void crearArticuloElectro(ArtNinosVO ninos);
 	
 	@GET @Path("buscarArticulo/{descripcion}")
-	public List<ArticuloVO> buscarArticulo(@PathParam("descripcion") String descripcion);
+	public ArticuloVO buscarArticulo(@PathParam("descripcion") String descripcion);
 	
 	@GET @Path("modificarArticulo/{codArticulo}&{nuevoStock}")
 	public void modificarStock(@PathParam("codArticulo") int codArticulo, @PathParam("nuevoStock") int nuevoStock);
+	
+	@POST @Path("sumarStock")
+	@Consumes(MediaType.APPLICATION_XML)
+	public void sumarStock(ArticuloVO artVO);
 	
 	//===================================================
 	//RECEPCION SOLICITUD ARTICULOS

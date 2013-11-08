@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.jms.Message;
 
 import session.bean.AdministradorArticulosBean;
+import xml.ConfirmarSolicitudesXML;
 import entity.*;
 import entity.vo.*;
-
 import facade.DepositoFacade;
 
 public @Stateless
@@ -30,7 +31,6 @@ class DepositoFacadeBean implements DepositoFacade {
 		return facade;
 	}
 
-	@Override
 	public void crearArticuloModa(ArtModaVO m) {
 		ArtModa moda = new ArtModa(m.getNombre(), m.getDescripcion(),
 				m.getPrecio(), m.getFoto(), m.getStock(), m.getColor(),
@@ -38,7 +38,6 @@ class DepositoFacadeBean implements DepositoFacade {
 		administradorArticulosBean.getInstancia().crearArticuloModa(moda);
 	}
 
-	@Override
 	public void crearArticuloMueble(ArtMuebleVO m) {
 		ArtMueble mueble = new ArtMueble(m.getNombre(), m.getDescripcion(),
 				m.getPrecio(), m.getFoto(), m.getStock(), m.getMaterial(),
@@ -46,7 +45,6 @@ class DepositoFacadeBean implements DepositoFacade {
 		administradorArticulosBean.getInstancia().crearArticuloMueble(mueble);
 	}
 
-	@Override
 	public void crearArticuloNinos(ArtNinosVO m) {
 		ArtNinos ninios = new ArtNinos(m.getNombre(), m.getDescripcion(),
 				m.getPrecio(), m.getFoto(), m.getStock(), m.getRangoEdad(),
@@ -54,7 +52,6 @@ class DepositoFacadeBean implements DepositoFacade {
 		administradorArticulosBean.getInstancia().crearArticuloNinos(ninios);
 	}
 
-	@Override
 	public void crearArticuloElectro(ArtElectroVO m) {
 		ArtElectro ele = new ArtElectro(m.getNombre(), m.getDescripcion(),
 				m.getPrecio(), m.getFoto(), m.getStock(), m.getFichaTecnica(),
@@ -74,10 +71,12 @@ class DepositoFacadeBean implements DepositoFacade {
 		}
 		return avoList;
 	}
+	
+	
 
 	@Override
 	public void sumarStock(ArticuloVO avo) {
-
+		//¿Hay que hacer que articulo tenga un constructor aca?
 		Articulo a = new Articulo(a.getCodArticulo(), a.getDescripcion(),
 				a.getPrecio(), a.getStock(), a.getMarca(), a.getOrigen());
 
@@ -94,7 +93,7 @@ class DepositoFacadeBean implements DepositoFacade {
 	}
 
 	@Override
-	public List<ArticuloVO> buscarArticulo(String stringBusqueda) {
+	public ArticuloVO buscarArticulo(String stringBusqueda) {
 		Articulo a = adminArticulos.getInstancia().buscarArticulo(
 				stringBusqueda);
 		ArticuloVO avo = new ArticuloVO(a.getCodArticulo(), a.getDescripcion(),
@@ -103,9 +102,11 @@ class DepositoFacadeBean implements DepositoFacade {
 	}
 
 	@Override
-	public List<SolicitudCompraVO> getSolicitudesPendientes() {
+	public List<SolicitudCompraVO> getSolicitudesCompraPendientes() {
 		return null;
-
 	}
+
+	
+	
 
 }
