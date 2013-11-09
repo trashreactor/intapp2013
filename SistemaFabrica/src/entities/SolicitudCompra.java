@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,22 +13,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.*;
 
 @Entity
 @Table(name="SolicitudCompra")
-
+@XmlRootElement(name = "SolicitudCompra")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class SolicitudCompra {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@XmlAttribute(name = "NroSolicitud")
 	private int nroSolicitudCompra;
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="nroSolicitudCompra")
+	@JoinColumn(name = "nroSolicitudCompra")
+	@XmlElement(name = "ItemSolicitud")
 	private List<ItemSolicitudCompra> items;
 	
+	@XmlAttribute(name = "Estado")
 	private String estado;
 	
+	@XmlAttribute(name = "Total")
 	private float total;
 	
 	@OneToOne
@@ -35,7 +41,7 @@ public class SolicitudCompra {
 	private Fabrica fabrica;
 
 	public SolicitudCompra() {
-	
+		items = new ArrayList<ItemSolicitudCompra>();
 	}
 
 	public int getNroSolicitudCompra() {
@@ -69,5 +75,8 @@ public class SolicitudCompra {
 	public void setTotal(float total) {
 		this.total = total;
 	}
-
+	
+	public void addItem(ItemSolicitudCompra item){
+		items.add(item);
+	}
 }

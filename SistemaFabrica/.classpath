@@ -14,5 +14,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/jersey-bundle-1.17.1.jar" sourcepath="D:/Users/Ale/.m2/repository/com/sun/jersey/jersey-bundle/1.17.1/jersey-bundle-1.17.1-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/jackson-annotations-2.2.3.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/jackson-core-2.2.3.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/jackson-databind-2.2.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
