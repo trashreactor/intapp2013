@@ -1,12 +1,16 @@
 package entities;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.*;
 
@@ -14,29 +18,29 @@ import javax.xml.bind.annotation.*;
 @Table(name="ItemSolicitudCompra")
 @XmlRootElement(name = "ItemSolicitud")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class ItemSolicitudCompra {
-	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+public class ItemSolicitudCompra implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "NroItem")
 	@XmlAttribute(name = "NroItem")
 	private int nroItemSolicitudCompra;
 		
-	@OneToOne
-	@JoinColumn(name="codArticulo")
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "CodArticulo")
 	@XmlElement(name = "Articulo")
 	private Articulo articulo;
 	
 	@XmlElement(name = "Cantidad")
+	@Column(name = "Cantidad")
 	private int cantidad;
 
-	@ManyToOne(cascade={})
-	@JoinColumn(name="nroSolicitudCompra")
-	private SolicitudCompra solicitudCompra;
+//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name="NroSolicitudCompra")
+//	private SolicitudCompra solicitudCompra;
 	
-	public ItemSolicitudCompra() {
-	}
+	public ItemSolicitudCompra() {}
 
-	
-	
 	public Articulo getArticulo() {
 		return articulo;
 	}
@@ -53,13 +57,13 @@ public class ItemSolicitudCompra {
 		this.cantidad = cantidad;
 	}
 	
-	public SolicitudCompra getSolicitudCompra (){
-		return this.solicitudCompra;
-	}
-	
-	public void setSolicitudCompra (SolicitudCompra solicitudCompra){
-		this.solicitudCompra=solicitudCompra;
-	}
+//	public SolicitudCompra getSolicitudCompra (){
+//		return this.solicitudCompra;
+//	}
+//	
+//	public void setSolicitudCompra (SolicitudCompra solicitudCompra){
+//		this.solicitudCompra=solicitudCompra;
+//	}
 	
 	
 	
