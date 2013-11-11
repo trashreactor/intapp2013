@@ -12,9 +12,9 @@ public class AppCliente {
 		 try {
 			 	Client client = Client.create();
 
-		        WebResource webResource = client.resource("http://localhost:8080/EJBRest/listaProductosJSON");
+		        WebResource webResource = client.resource("http://localhost:8080/SistemaFabrica/enviarSolicitud");
 
-		        String input = leerXML("Productos.json");
+		        String input = leerXML("SolicitudPrueba.json");
 
 		        ClientResponse response = webResource.type(MediaType.APPLICATION_JSON)
 		           .post(ClientResponse.class, input);

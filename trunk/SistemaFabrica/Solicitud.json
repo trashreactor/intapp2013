@@ -1,0 +1,26 @@
+{
+	"nroSolicitudCompra": 1,
+	"items": [{
+		"articulo": {
+			"codArticulo": 1
+		},
+		"cantidad": 10,
+		"solicitudCompra": null
+	},
+	{
+		"articulo": {
+			"codArticulo": 2
+		},
+		"cantidad": 8,
+		"solicitudCompra": null
+	},
+	{
+		"articulo": {
+			"codArticulo": 3
+		},
+		"cantidad": 10,
+		"solicitudCompra": null
+	}],
+	"estado": null,
+	"total": 0.0
+}

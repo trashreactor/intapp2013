@@ -1,44 +1,40 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 
 @Entity
-@Table(name="SolicitudCompra")
+@Table(name = "SolicitudCompra")
 @XmlRootElement(name = "SolicitudCompra")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class SolicitudCompra {
-	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+public class SolicitudCompra implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "NroSolicitudCompra")
 	@XmlAttribute(name = "NroSolicitud")
 	private int nroSolicitudCompra;
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "nroSolicitudCompra")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "NroSolicitudCompra")
 	@XmlElement(name = "ItemSolicitud")
 	private List<ItemSolicitudCompra> items;
 	
 	@XmlAttribute(name = "Estado")
+	@Column(name = "Estado")
 	private String estado;
 	
 	@XmlAttribute(name = "Total")
+	@Column(name = "Total")
 	private float total;
 	
-	@OneToOne
-	@JoinColumn(name="idFabrica")
-	private Fabrica fabrica;
+//	@OneToOne
+//	@JoinColumn(name="idFabrica")
+//	private Fabrica fabrica;
 
 	public SolicitudCompra() {
 		items = new ArrayList<ItemSolicitudCompra>();

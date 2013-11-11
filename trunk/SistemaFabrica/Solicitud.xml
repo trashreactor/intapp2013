@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SolicitudCompra NroSolicitud="1" Total="0.0">
+  <ItemSolicitud NroItem="1">
+    <Articulo CodArticulo="1"/>
+    <Cantidad>15</Cantidad>
+  </ItemSolicitud>
+  <ItemSolicitud NroItem="2">
+    <Articulo CodArticulo="3"/>
+    <Cantidad>20</Cantidad>
+  </ItemSolicitud>
+</SolicitudCompra>

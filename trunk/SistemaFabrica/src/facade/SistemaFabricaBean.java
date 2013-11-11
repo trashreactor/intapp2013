@@ -17,7 +17,8 @@ public class SistemaFabricaBean implements SistemaFabrica{
 	public SistemaFabricaBean(){}
 
 	public void enviarSolicitud(SolicitudCompra solicitud) {
-		em.persist(solicitud);
+		if(em.find(SolicitudCompra.class, solicitud.getNroSolicitudCompra()) == null)
+			em.persist(solicitud);
 	}
 
 	@SuppressWarnings("unchecked")
