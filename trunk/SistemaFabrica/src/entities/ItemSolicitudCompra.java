@@ -26,7 +26,7 @@ public class ItemSolicitudCompra implements Serializable{
 	@XmlAttribute(name = "NroItem")
 	private int nroItemSolicitudCompra;
 		
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CodArticulo")
 	@XmlElement(name = "Articulo")
 	private Articulo articulo;

@@ -28,17 +28,27 @@ public class SistemaFabricaBean implements SistemaFabrica{
 		return query.getResultList();
 	}
 
-	public void confirmarSolicitudes(List<Integer> nrosSolicitudes) throws Exception {
-		for(int nroSolicitud : nrosSolicitudes){
+	public void confirmarSolicitudes(String nrosSolicitudes) throws Exception {
+		String[] nrosSolicitudesSplited = nrosSolicitudes.split(",");
+		for(String nroSolicitudChar : nrosSolicitudesSplited){
+			int nroSolicitud = Integer.parseInt(nroSolicitudChar);
 			SolicitudCompra solicitud = em.find(SolicitudCompra.class, nroSolicitud);
 			solicitud.setEstado("Satisfecha");
 			RemitoCompra remito = convertirRemito(solicitud);
+			em.persist(remito);
 			enviarRemito(remito);
 		}
 	}
 	
 	private RemitoCompra convertirRemito(SolicitudCompra solicitud){
-		return null;
+		RemitoCompra remito = new RemitoCompra();
+		for(ItemSolicitudCompra itemS : solicitud.getItems()){
+			ItemRemitoCompra itemR = new ItemRemitoCompra();
+			itemR.setArticulo(itemS.getArticulo());
+			itemR.setCantidad(itemS.getCantidad());
+			remito.addItem(itemR);
+		}
+		return remito;
 	}
 	
 	private void enviarRemito(RemitoCompra remito) throws Exception {
