@@ -21,9 +21,10 @@ public class ConexionJMS {
         final Properties env = new Properties();
         env.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
         env.put(Context.PROVIDER_URL, System.getProperty(Context.PROVIDER_URL, "remote://"+url));
-        env.put(Context.SECURITY_PRINCIPAL, System.getProperty("username", usuario));
-        env.put(Context.SECURITY_CREDENTIALS, System.getProperty("password", contraseña));
+//        env.put(Context.SECURITY_PRINCIPAL, System.getProperty("username", usuario));
+//        env.put(Context.SECURITY_CREDENTIALS, System.getProperty("password", contraseña));
         Context context = new InitialContext(env);
+//        Context context = new InitialContext();
 
         // Perform the JNDI lookups
         String connectionFactoryString = System.getProperty("connection.factory", "jms/RemoteConnectionFactory");

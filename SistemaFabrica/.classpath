@@ -17,5 +17,7 @@
 	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/jackson-annotations-2.2.3.jar"/>
 	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/jackson-core-2.2.3.jar"/>
 	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/jackson-databind-2.2.3.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ale/Documents/Eclipse workspaces/Integracion de aplicaciones/Librerias/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/jboss-as-7.1.1.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
