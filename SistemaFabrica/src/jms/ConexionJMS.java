@@ -19,17 +19,18 @@ public class ConexionJMS {
 
 		// Set up the context for the JNDI lookup
         final Properties env = new Properties();
-        env.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
+        
+        env.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
         env.put(Context.PROVIDER_URL, System.getProperty(Context.PROVIDER_URL, "remote://"+url));
-//        env.put(Context.SECURITY_PRINCIPAL, System.getProperty("username", usuario));
-//        env.put(Context.SECURITY_CREDENTIALS, System.getProperty("password", contraseña));
+        env.put(Context.SECURITY_PRINCIPAL, System.getProperty("username", usuario));
+        env.put(Context.SECURITY_CREDENTIALS, System.getProperty("password", contraseña));
         Context context = new InitialContext(env);
 //        Context context = new InitialContext();
 
         // Perform the JNDI lookups
         String connectionFactoryString = System.getProperty("connection.factory", "jms/RemoteConnectionFactory");
         ConnectionFactory connectionFactory = (ConnectionFactory) context.lookup(connectionFactoryString);
-
+        
         String destinationString = System.getProperty("destination", destino);
         Destination destination = (Destination) context.lookup(destinationString);
 
@@ -37,9 +38,9 @@ public class ConexionJMS {
         Connection connection = connectionFactory.createConnection(System.getProperty("username", usuario), System.getProperty("password", contraseña));
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         connection.start();
-    	
+        
         MessageProducer producer = session.createProducer(destination);
-        ObjectMessage mensajeAEnviar = session.createObjectMessage(mensaje);
+        Message mensajeAEnviar = session.createObjectMessage(mensaje);
         producer.send(mensajeAEnviar);
 		
 		connection.close();
